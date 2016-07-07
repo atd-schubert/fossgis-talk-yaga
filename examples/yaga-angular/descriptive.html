@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Yaga-Map</title>
+
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css">
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bundle.js"></script>
+</head>
+<body>
+<body ng-controller="TestAppController">
+
+<yaga-map style="min-height: 300px;" center="{lat:47.8, lng:13.1}" zoom="12">
+    <yaga-tile-layer attribution="'OSM'" url="'http://b.tile.openstreetmap.org/{z}/{x}/{y}.png'" name="'OSM'" opacity="1"></yaga-tile-layer>
+    <yaga-tile-layer attribution="'Topo-Map'" url="'http://b.tile.opentopomap.org/{z}/{x}/{y}.png'" name="'TopoMap'" opacity="0.5"></yaga-tile-layer>
+    <yaga-geojson-layer name="'vector'" data="geojson"></yaga-geojson-layer>
+</yaga-map>
+</body>
+</html>

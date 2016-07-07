@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Two-Way-Databinding</title>
+
+</head>
+<body>
+<input type="text" id="box" placeholder="Bitte Text eingeben..."/>
+<p>Ergebnis: <span id="text"> </span></p>
+</body>
+<script>
+    var box = document.getElementById('box'),
+            text = document.getElementById('text').firstChild;
+
+    window.model = {
+        text: "Der Inhalt des Models"
+    };
+
+    box.value = window.model.text;
+    text.nodeValue = window.model.text;
+
+    box.addEventListener('input', function () {
+        text.nodeValue = box.value;
+    });
+
+</script>
+</html>

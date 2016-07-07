@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Yaga-Map mit Layertree</title>
+
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/leaflet/dist/leaflet.css">
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bundle.js"></script>
+</head>
+<body>
+<body ng-controller="TestAppController">
+
+<yaga-map style="min-height: 300px;" center="center" zoom="zoom">
+    <yaga-tile-layer ng-repeat="layer in layers" ng-if="layer.type == 'tile'" attribution="layer.attribution" url="layer.url" name="layer.name" opacity="layer.opacity"></yaga-tile-layer>
+    <yaga-wms-layer ng-repeat="layer in layers" ng-if="layer.type == 'wms'" attribution="layer.attribution" url="layer.url" name="layer.name" opacity="layer.opacity" layers="layer.layers"></yaga-wms-layer>
+    <yaga-geojson-layer name="'vector'" data="geojson"></yaga-geojson-layer>
+</yaga-map>
+
+<hr/>
+
+<div class="container">
+    <div class="input-group">
+        <span class="input-group-addon">Zoom</span>
+        <input ng-model="zoom" type="range" max="17" min="0">
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon">Lat</span>
+        <input ng-model="center.lat" type="number" step="0.01"  class="form-control">
+    </div>
+    <div class="input-group">
+        <span class="input-group-addon">Lng</span>
+        <input ng-model="center.lng" type="number" step="0.01" class="form-control">
+    </div>
+</div>
+<div class="container">
+    <h2>Layertree</h2>
+    <ol>
+        <li ng-repeat="layer in layers">
+            <p>Layer {{ layer.name }} [{{layer.type}}]: {{ layer.url }}</p>
+            <input type="range" max="1" min="0" step="0.1" ng-model="layer.opacity">
+
+            <div class="input-group">
+                <span class="input-group-addon">Attribution</span>
+                <input type="text" ng-model="layer.attribution" class="form-control">
+            </div>
+
+
+            <button ng-click="removeLayer(layer)" class="btn btn-danger">remove this layer...</button>
+        </li>
+        <li ng-show="false">
+            <select ng-model="newLayer.type">
+                <!--<option ng-repeat="layerType in layerTypes">{{ layerType }}</option>-->
+                <option>tile</option>
+                <option>wms</option>
+            </select><br/>
+            Name: <input ng-model="newLayer.name"><br/>
+            Url: <input ng-model="newLayer.url"><br/>
+            Attribution: <input ng-model="newLayer.attribution"><br/>
+            Opacity: <input type="number" max="1" min="0" step="0.1" ng-model="newLayer.opacity"><br/>
+        <span ng-if="newLayer.type === 'wms'">
+            Layers: <input ng-repeat="wmsLayer in newLayer.layers" type="text" ng-model="wmsLayer.name"><br/>
+            <button ng-click="newLayer.addWmsLayer()">Add a wms-layer</button>
+        </span>
+            {{ newLayer }}<br/>
+            <button ng-click="newLayer.addLayer()">add layer</button>
+        </li>
+    </ol>
+</div>
+
+
+
+</body>
+</html>

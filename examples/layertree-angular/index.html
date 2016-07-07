@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Two-Way-Databinding mit Angular</title>
+
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script>
+        angular.module('layertree', [])
+                .controller('layertreeCtrl', function ($scope) {
+                    $scope.layers = [];
+                    $scope.newLayer = {
+                        name: 'OSM',
+                        type: 'tile',
+                        url: 'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png'
+                    };
+                    $scope.addLayer = function() {
+                        // add new Layer
+                        $scope.layers.push({
+                            name: $scope.newLayer.name,
+                            type: $scope.newLayer.type,
+                            url: $scope.newLayer.url,
+                            editable: false
+                        });
+
+                        // reset inputs
+                        $scope.newLayer.name = '';
+                        $scope.newLayer.type = 'tile';
+                        $scope.newLayer.url = '';
+                    };
+                    $scope.removeLayer = function(obj) {
+                        $scope.layers.splice($scope.layers.indexOf(obj), 1);
+                    }
+                });
+    </script>
+</head>
+<body ng-app="layertree">
+<div ng-controller="layertreeCtrl" class="container">
+
+    <h1>Simple Layertree mit Angular</h1>
+
+    <h2>Liste der aktuellen Layer</h2>
+
+
+    <div ng-repeat="layer in layers">
+        <div class="jumbotron">
+            <div ng-show="layer.editable">
+                <input type="text" class="form-control" placeholder="Name des Layers" ng-model="layer.name" />
+                <select class="form-control">
+                    <option value="tile">Tile</option>
+                    <option value="wms">WMS</option>
+                </select>
+                <input type="text" class="form-control" placeholder="URL" ng-model="layer.url" />
+
+                <button class="btn-primary btn" ng-click="layer.editable = false">Layer speichern...</button>
+                <button class="btn-danger btn" ng-click="removeLayer(layer)">Layer löschen...</button>
+            </div>
+            <div ng-hide="layer.editable">
+                <ul>
+                    <li>Name: {{ layer.name }}</li>
+                    <li>Typ: {{ layer.type }}</li>
+                    <li>Url: {{ layer.url }}</li>
+                </ul>
+
+                <button class="btn-warning btn" ng-click="layer.editable = true">Layer bearbeiten...</button>
+            </div>
+
+        </div>
+        <hr>
+    </div>
+    <p><i>Inhalt des Models: {{ layers }}</i></p>
+
+    <hr>
+
+    <h2>Layer hinzufügen</h2>
+    <div class="jumbotron">
+        <input type="text" class="form-control" placeholder="Name des Layers" ng-model="newLayer.name" />
+        <select class="form-control" ng-model="newLayer.type">
+            <option value="tile">Tile</option>
+            <option value="wms">WMS</option>
+        </select>
+        <input type="text" class="form-control" placeholder="URL" ng-model="newLayer.url" />
+
+        <button class="btn-primary btn" ng-click="addLayer()">Layer hinzufügen...</button>
+    </div>
+</div>
+
+</body>
+</html>
