@@ -17,8 +17,6 @@ Two way databinding mit:
 
 [Beispiel](examples/yaga-angular/simple.html)
 
-Note: Änderungen auf der Map, dann auf Inputs
-
 
 ## Layer Directive
 
@@ -49,8 +47,6 @@ Deskriptive Erstellung
 
 [Beispiel](examples/yaga-angular/descriptive.html)
 
-Note: Unterschied zu leaflet-directive!
-
 
 ## Verfügbare Directives
 
@@ -59,9 +55,6 @@ Note: Unterschied zu leaflet-directive!
 * WMS-Layer
 * GeoJSON-Layer
 * *Spatialite-Layer*
-
-Note: GEOJSON: Daten und Style 2-Way-DB. Sonst URL, Name, Attribution.
-Spatialite nur mit Cordova-Plugin
 
 
 ## Verknüpfung mit Layertree
@@ -82,9 +75,6 @@ Spatialite nur mit Cordova-Plugin
 ```
 
 [Beispiel](examples/yaga-angular/layertree.html)
-
-Note: Layer werden durch Schleife erstellt. Tranzparenz und Attribution
-vorführen
 
 
 ## YAGA und Ionic

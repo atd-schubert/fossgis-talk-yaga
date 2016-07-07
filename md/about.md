@@ -2,8 +2,6 @@
 
 Arne Schubert - Webentwickler
 
-Note: Moderne Web-Programmierung mit einer Vorliebe für Geographie
-
 
 ## Über die Wheregroup
 

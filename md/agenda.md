@@ -5,8 +5,3 @@
 * YAGA im Einsatz
 * MobileMaps
 * Roadmap, Ausblick
-    
-Note: Motivation, Ansätze, Technologien.
-One-, Two-Way und Angular.
-Map und Layer deklarativ und binded
-Vorteile von YAGA

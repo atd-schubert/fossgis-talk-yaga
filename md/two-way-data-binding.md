@@ -25,9 +25,6 @@ box.addEventListener('input', function () {
 
 [Beispiel](examples/one-way/index.html)
 
-Note: In WebConsole "model.text" vor und nach Änderung.
-Änderungen können nur durch Events ünernommen werden.
-
 
 ## Two-Way-Data-Binding
 
@@ -53,8 +50,6 @@ document.getElementById('box').addEventListener('keyup', function () {
 
 [Beispiel](examples/two-way/index.html)
 
-Note: In WebConsole zusätzlich Änderungen an "model.text" vornehmen
-
 
 ## Two-Way-Data-Binding mit Angular
 
@@ -67,5 +62,3 @@ Note: In WebConsole zusätzlich Änderungen an "model.text" vornehmen
 ```
 
 [Beispiel](examples/two-way-angular/index.html)
-
-Note: Eigentlich gar kein JavaScript mehr notwendig

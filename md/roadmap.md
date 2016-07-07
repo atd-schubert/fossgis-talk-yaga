@@ -5,7 +5,5 @@
 * Decorators
 * Server-Komponenten für Node.js
 
-Note: Express / Connect
-
 
 ## Nicht API-Fix!
